@@ -1,7 +1,8 @@
 import * as React from 'react';
 import { useState } from "react";
-import { CheckBox, StyleSheet, TextInput, View, Text, Button } from 'react-native';
+import { StyleSheet, TextInput, View, Text, Button } from 'react-native';
 import MaskInput, { Masks } from 'react-native-mask-input';
+import CheckBox from 'expo-checkbox';
 
 export function FormNaruto() {
   const [email, setEmail] = useState('');
@@ -28,7 +29,6 @@ export function FormNaruto() {
   const handleDateBlur = () => setDateFocused(false);
 
   const handleChangeCvv = (text) => {
-    // Allow only numbers 
     const numericValue = text.replace(/[^0-9]/g, "");
     setCvv(numericValue);
   };
@@ -44,6 +44,7 @@ export function FormNaruto() {
             style={[styles.standard, emailFocused && styles.inputFocused]}
             onChangeText={setEmail}
             value={email}
+            keyboardType='email-address'
             onFocus={handleEmailFocus}
             onBlur={handleEmailBlur}
             placeholder='emailPessoal@gmail.com'
@@ -69,6 +70,7 @@ export function FormNaruto() {
             value={creditCard}
             onChangeText={setCreditCard}
             mask={Masks.CREDIT_CARD}
+            keyboardType='decimal-pad'
             placeholder='XXXX XXXX XXXX XXXX'
             placeholderTextColor='#c7c5c5'
             onFocus={handleCreditCardFocus}
@@ -98,6 +100,7 @@ export function FormNaruto() {
             value={date}
             onChangeText={setDate}
             mask={Masks.DATE_DDMMYYYY}
+            keyboardType='decimal-pad'
             placeholder='DD/MM/YYYY'
             placeholderTextColor='#c7c5c5'
             onFocus={handleDateFocus}
